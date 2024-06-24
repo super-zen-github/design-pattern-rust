@@ -2,7 +2,7 @@
 
 
 pub struct FactoryClass {
-} 
+}
 
 pub struct ComplicatedClass {
     field: String,
@@ -23,6 +23,6 @@ impl FactoryClass {
 
 impl ComplicatedClass {
     pub fn print(self) {
-        print!("{:?}", self.field);
-    } 
+        println!("{:?}", self.field);
+    }
 }
