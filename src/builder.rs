@@ -34,10 +34,6 @@ pub struct SomePoolBuilder {
 }
 
 impl SomePoolBuilder {
-    // pub fn new() -> Self {
-    //     Self{}
-    // }
-
     pub fn build(&self) -> Result<SomePool, PoolBuildError> {
         if self.name.is_empty() {
             return Err(PoolBuildError::InvalidNameError("name can not be empty".to_string()))
