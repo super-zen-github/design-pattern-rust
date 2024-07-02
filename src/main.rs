@@ -2,10 +2,12 @@ mod singleton;
 mod factory;
 mod builder;
 mod prototype;
+mod proxy;
 
 use builder::SomePoolBuilder;
 use factory::FactoryClass;
 use prototype::ComplicatedEntity;
+use proxy::*;
 
 fn main() {
     println!("Hello, world!");
@@ -34,4 +36,10 @@ fn main() {
     let mut c2 = c1.clone();
     c2.update_x(10);
     c2.print();
+
+    let proxy = Proxy::new();
+    let q_a = A::new();
+    let q_b = B::new();
+    proxy.invoke(q_a);
+    proxy.invoke(q_b);
 }
