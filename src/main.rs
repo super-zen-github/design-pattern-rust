@@ -3,11 +3,13 @@ mod factory;
 mod builder;
 mod prototype;
 mod proxy;
+mod bridge;
 
 use builder::SomePoolBuilder;
 use factory::FactoryClass;
 use prototype::ComplicatedEntity;
 use proxy::*;
+use bridge::*;
 
 fn main() {
     println!("Hello, world!");
@@ -42,4 +44,12 @@ fn main() {
     let q_b = B::new();
     proxy.invoke(q_a);
     proxy.invoke(q_b);
+
+    let telephone_msg_sender = TelephoneMsgSender::new(vec![String::from("1234567890")]);
+    let email_msg_sender = EmailMsgSender::new(vec![String::from("aaa@bbb.com")]);
+
+    let s_notification = ServereNotification::new(&telephone_msg_sender);
+    let n_notification = NormalNotification::new(&email_msg_sender);
+    s_notification.notify(String::from("emergency issue"));
+    n_notification.notify(String::from("normal issue"));
 }
