@@ -4,12 +4,14 @@ mod builder;
 mod prototype;
 mod proxy;
 mod bridge;
+mod decorator;
 
 use builder::SomePoolBuilder;
 use factory::FactoryClass;
 use prototype::ComplicatedEntity;
 use proxy::*;
 use bridge::*;
+use decorator::*;
 
 fn main() {
     println!("Hello, world!");
@@ -52,4 +54,9 @@ fn main() {
     let n_notification = NormalNotification::new(&email_msg_sender);
     s_notification.notify(String::from("emergency issue"));
     n_notification.notify(String::from("normal issue"));
+
+
+    let d = D::new();
+    let d_d = DDecorator::new(d);
+    d_d.f();
 }
