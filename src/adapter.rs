@@ -1,3 +1,9 @@
+/// Adapter design pattern
+/// 1. resolve the bad design of interface
+/// 2. unify the interface design of multiple classes
+/// 3. replace the dependent outside system
+/// 4. compatible with old version of interfaces
+/// 5. compatible with different types of data
 pub trait TargetTrait {
     fn f1(&self);
     fn f2(&self);

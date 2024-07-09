@@ -6,6 +6,7 @@ mod proxy;
 mod bridge;
 mod decorator;
 mod adapter;
+mod facade;
 
 use builder::SomePoolBuilder;
 use factory::FactoryClass;
@@ -14,6 +15,7 @@ use proxy::*;
 use bridge::*;
 use decorator::*;
 use adapter::*;
+use facade::*;
 
 fn main() {
     println!("Hello, world!");
@@ -65,5 +67,9 @@ fn main() {
     let adpt = Adapter::new();
     adpt.f1();
     adpt.f2();
+
+
+    let fac = Facade::new();
+    fac.whole();
     
 }
