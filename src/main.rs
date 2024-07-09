@@ -5,6 +5,7 @@ mod prototype;
 mod proxy;
 mod bridge;
 mod decorator;
+mod adapter;
 
 use builder::SomePoolBuilder;
 use factory::FactoryClass;
@@ -12,6 +13,7 @@ use prototype::ComplicatedEntity;
 use proxy::*;
 use bridge::*;
 use decorator::*;
+use adapter::*;
 
 fn main() {
     println!("Hello, world!");
@@ -56,7 +58,12 @@ fn main() {
     n_notification.notify(String::from("normal issue"));
 
 
-    let d = D::new();
-    let d_d = DDecorator::new(d);
+    let d_d = DDecorator::new();
     d_d.f();
+
+
+    let adpt = Adapter::new();
+    adpt.f1();
+    adpt.f2();
+    
 }

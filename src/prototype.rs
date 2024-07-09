@@ -21,7 +21,7 @@ impl ComplicatedEntity {
         }
     }
 
-     pub fn print(&self) {
+    pub fn print(&self) {
         println!("ComplicatedEntity[x: {}, y: {}, z: {:?}]", self.x, self.y, self.z);
     }
 

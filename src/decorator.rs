@@ -2,10 +2,10 @@ pub trait IA {
     fn f(self);
 }
 
-pub struct D {}
+struct D {}
 
 impl D {
-    pub fn new() -> Self {
+    fn new() -> Self {
         Self{}
     }
 }
@@ -22,7 +22,8 @@ pub struct DDecorator {
 }
 
 impl DDecorator {
-    pub fn new(d: D) -> Self {
+    pub fn new() -> Self {
+        let d = D::new();
         Self {
             d
         }
