@@ -7,6 +7,7 @@ mod bridge;
 mod decorator;
 mod adapter;
 mod facade;
+mod composite;
 
 use builder::SomePoolBuilder;
 use factory::FactoryClass;
@@ -16,6 +17,7 @@ use bridge::*;
 use decorator::*;
 use adapter::*;
 use facade::*;
+use composite::*;
 
 fn main() {
     println!("Hello, world!");
@@ -71,5 +73,17 @@ fn main() {
 
     let fac = Facade::new();
     fac.whole();
+
+    let mut directory = Directory::new(String::from("/test/"));
+    directory.get_path();
+    let file1 = File::new(String::from("/test/a.txt"));
+    file1.get_path();
+    let file2 = File::new(String::from("/test/b.txt"));
+    file2.get_path();
+    directory.add_sub_node(&file1);
+    directory.add_sub_node(&file2);
+    let nof = directory.number_of_files();
+    println!("Number of files in directory: {nof}");
+
     
 }
