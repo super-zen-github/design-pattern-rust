@@ -1,4 +1,4 @@
-
+/// Bridge design pattern [structure]
 
 
 pub trait MsgSender {

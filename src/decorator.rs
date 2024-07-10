@@ -1,3 +1,5 @@
+/// Decorator design pattern [structure]
+
 pub trait IA {
     fn f(self);
 }

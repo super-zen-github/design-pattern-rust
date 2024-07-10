@@ -8,6 +8,9 @@ mod decorator;
 mod adapter;
 mod facade;
 mod composite;
+mod flyweight;
+
+use std::rc::Rc;
 
 use builder::SomePoolBuilder;
 use factory::FactoryClass;
@@ -18,6 +21,7 @@ use decorator::*;
 use adapter::*;
 use facade::*;
 use composite::*;
+use flyweight::*;
 
 fn main() {
     println!("Hello, world!");
@@ -86,4 +90,11 @@ fn main() {
     println!("Number of files in directory: {nof}");
 
     
+    let chess_base_factory = ChessBaseFactory::new();
+    let unit1 = ChessUnit::new(Rc::new(chess_base_factory.get_base(&1).to_owned()), 1, 0);
+    let unit2 = ChessUnit::new(Rc::new(chess_base_factory.get_base(&3).to_owned()), 0, 1);
+    let mut chess_board = ChessBoard::new();
+    chess_board.add_unit(1, unit1);
+    chess_board.add_unit(2, unit2);
+    chess_board.print();
 }

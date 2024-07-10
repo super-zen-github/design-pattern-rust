@@ -1,4 +1,4 @@
-// factory
+/// Factory design pattern [creation]
 
 
 pub struct FactoryClass {

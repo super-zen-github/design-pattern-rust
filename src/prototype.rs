@@ -1,3 +1,4 @@
+/// Prototype design pattern [creation]
 #[derive(Clone)]
 pub struct ComplicatedEntity {
     x: i32,

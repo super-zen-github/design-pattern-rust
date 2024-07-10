@@ -1,5 +1,5 @@
-// singleton 
-// only have one instance
+/// Singleton design pattern [creation]
+/// only have one instance
 
 #[derive(Debug, Clone, Copy)]
 pub struct SingleClass {

@@ -1,4 +1,4 @@
-// builder
+/// Builder design pattern [creation]
 use std::fmt;
 
 #[derive(Debug)]

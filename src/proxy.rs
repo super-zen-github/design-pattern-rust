@@ -1,4 +1,4 @@
-
+/// Proxy design pattern [structure]
 pub struct A {}
 pub struct B {}
 
