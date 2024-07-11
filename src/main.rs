@@ -9,6 +9,7 @@ mod adapter;
 mod facade;
 mod composite;
 mod flyweight;
+mod observer;
 
 use std::rc::Rc;
 
@@ -22,6 +23,7 @@ use adapter::*;
 use facade::*;
 use composite::*;
 use flyweight::*;
+use observer::*;
 
 fn main() {
     println!("Hello, world!");
@@ -97,4 +99,9 @@ fn main() {
     chess_board.add_unit(1, unit1);
     chess_board.add_unit(2, unit2);
     chess_board.print();
+
+    let mut subject = ConcreteSubject::new();
+    let observer = ConcreteObserver::new();
+    subject.register_observer(&observer);
+    subject.notify_observers("this is a notification");
 }
