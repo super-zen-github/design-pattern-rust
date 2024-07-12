@@ -1,4 +1,4 @@
-/// Adapter design pattern
+/// Adapter design pattern [structure]
 /// 1. resolve the bad design of interface
 /// 2. unify the interface design of multiple classes
 /// 3. replace the dependent outside system

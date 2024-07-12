@@ -1,4 +1,4 @@
-/// Composite design pattern
+/// Composite design pattern [structure]
 
 pub trait Node {
     fn get_path(&self);

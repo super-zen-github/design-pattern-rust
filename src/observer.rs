@@ -1,4 +1,4 @@
-/// Observer design pattern
+/// Observer design pattern [action]
 /// or Publish-Subscribe design pattern
 
 

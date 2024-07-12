@@ -1,4 +1,4 @@
-/// Flyweight design pattern
+/// Flyweight design pattern [structure]
 /// for saving time or space
 
 use std::{collections::HashMap, rc::Rc};

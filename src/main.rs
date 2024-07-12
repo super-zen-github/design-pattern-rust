@@ -10,6 +10,7 @@ mod facade;
 mod composite;
 mod flyweight;
 mod observer;
+mod template;
 
 use std::rc::Rc;
 
@@ -24,6 +25,7 @@ use facade::*;
 use composite::*;
 use flyweight::*;
 use observer::*;
+use template::*;
 
 fn main() {
     println!("Hello, world!");
@@ -104,4 +106,8 @@ fn main() {
     let observer = ConcreteObserver::new();
     subject.register_observer(&observer);
     subject.notify_observers("this is a notification");
+
+
+    let i = Instance::new();
+    i.c();
 }

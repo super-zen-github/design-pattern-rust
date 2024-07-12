@@ -1,4 +1,4 @@
-/// Facade design pattern
+/// Facade design pattern [structure]
 /// 1. combine multiple methods' invoking
 /// 2. resolve bad performance
 /// 3. resolve problem of distributed transaction
