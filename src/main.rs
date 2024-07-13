@@ -11,6 +11,7 @@ mod composite;
 mod flyweight;
 mod observer;
 mod template;
+mod strategy;
 
 use std::rc::Rc;
 
@@ -26,6 +27,7 @@ use composite::*;
 use flyweight::*;
 use observer::*;
 use template::*;
+use strategy::*;
 
 fn main() {
     println!("Hello, world!");
@@ -110,4 +112,10 @@ fn main() {
 
     let i = Instance::new();
     i.c();
+
+
+    let strategy_factory = DiscountStrategyFactory::new();
+    let order = Order::new(String::from("NORMAL"));
+    let strategy = strategy_factory.get_strategy(order.get_type());
+    strategy.cal_discount();
 }
