@@ -12,6 +12,7 @@ mod flyweight;
 mod observer;
 mod template;
 mod strategy;
+mod chain;
 
 use std::rc::Rc;
 
@@ -28,6 +29,7 @@ use flyweight::*;
 use observer::*;
 use template::*;
 use strategy::*;
+use chain::*;
 
 fn main() {
     println!("Hello, world!");
@@ -118,4 +120,12 @@ fn main() {
     let order = Order::new(String::from("NORMAL"));
     let strategy = strategy_factory.get_strategy(order.get_type());
     strategy.cal_discount();
+
+
+    let mut handler_a = ConcreteHandler::new("handler_a");
+    let mut handler_b = ConcreteHandler::new("handler_b");
+    let handler_c = ConcreteHandler::new("handler_c");
+    handler_b.set_next(&handler_c);
+    handler_a.set_next(&handler_b);
+    handler_a.handle();
 }
