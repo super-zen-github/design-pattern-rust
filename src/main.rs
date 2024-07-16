@@ -13,6 +13,7 @@ mod observer;
 mod template;
 mod strategy;
 mod chain;
+mod state;
 
 use std::rc::Rc;
 
@@ -30,6 +31,7 @@ use observer::*;
 use template::*;
 use strategy::*;
 use chain::*;
+use state::*;
 
 fn main() {
     println!("Hello, world!");
@@ -128,4 +130,9 @@ fn main() {
     handler_b.set_next(&handler_c);
     handler_a.set_next(&handler_b);
     handler_a.handle();
+
+    let mut machine = MarioStateMachine::new();
+    let mario = SmallMario::new();
+    mario.obtain_mushroom(&mut machine);
+    println!("Machine state: {}, score: {}", machine.get_state(), machine.get_score());
 }
