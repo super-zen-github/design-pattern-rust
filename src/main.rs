@@ -14,6 +14,8 @@ mod template;
 mod strategy;
 mod chain;
 mod state;
+mod iterator;
+
 
 use std::rc::Rc;
 
@@ -32,6 +34,7 @@ use template::*;
 use strategy::*;
 use chain::*;
 use state::*;
+use iterator::*;
 
 fn main() {
     println!("Hello, world!");
@@ -135,4 +138,13 @@ fn main() {
     let mario = SmallMario::new();
     mario.obtain_mushroom(&mut machine);
     println!("Machine state: {}, score: {}", machine.get_state(), machine.get_score());
+
+
+    let mut concrete_list = ConcreteList::new();
+    concrete_list.push(1);
+    concrete_list.push(2);
+    let mut iter = ConcreteIterator::new(&concrete_list);
+    println!("iter has_next: {}", iter.has_next());
+    println!("iter next: {:?}", iter.next());
+    println!("iter next: {:?}", iter.next());
 }
