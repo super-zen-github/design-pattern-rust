@@ -1,3 +1,4 @@
+/// Iterator design pattern [action]
 pub trait Iterator<'a, T> {
     fn next(&mut self) -> Option<&'a T>;
     fn has_next(&self) -> bool;
@@ -14,8 +15,8 @@ pub struct ConcreteList<T> {
     list: Vec<T>
 }
 
-pub struct ConcreteIterator<'a, L, T> 
-where L: List<T> 
+pub struct ConcreteIterator<'a, L, T>
+where L: List<T>
 {
     c_list: &'a L,
     current_idx: usize,

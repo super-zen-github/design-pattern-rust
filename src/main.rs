@@ -15,6 +15,7 @@ mod strategy;
 mod chain;
 mod state;
 mod iterator;
+mod visitor;
 
 
 use std::rc::Rc;
@@ -35,6 +36,7 @@ use strategy::*;
 use chain::*;
 use state::*;
 use iterator::*;
+use visitor::*;
 
 fn main() {
     println!("Hello, world!");
@@ -102,7 +104,7 @@ fn main() {
     let nof = directory.number_of_files();
     println!("Number of files in directory: {nof}");
 
-    
+
     let chess_base_factory = ChessBaseFactory::new();
     let unit1 = ChessUnit::new(Rc::new(chess_base_factory.get_base(&1).to_owned()), 1, 0);
     let unit2 = ChessUnit::new(Rc::new(chess_base_factory.get_base(&3).to_owned()), 0, 1);
@@ -147,4 +149,16 @@ fn main() {
     println!("iter has_next: {}", iter.has_next());
     println!("iter next: {:?}", iter.next());
     println!("iter next: {:?}", iter.next());
+
+
+    let mut document = Document::new();
+    document.add_element(Box::new(Text::new("Hello, world!")));
+    document.add_element(Box::new(Image::new("image.jpg")));
+    document.add_element(Box::new(Text::new("This is a sample document.")));
+    let html_visitor = HTMLExportVisitor;
+    let plain_text_visitor = PlainTextExportVisitor;
+    println!("HTML Export:");
+    document.accept(&html_visitor);
+    println!("\nPlain Text Export:");
+    document.accept(&plain_text_visitor);
 }

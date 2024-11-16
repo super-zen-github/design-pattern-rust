@@ -1,4 +1,4 @@
-/// Template method design patter [action]
+/// Template method design pattern [action]
 
 pub trait Template {
     fn a(&self);
