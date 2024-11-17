@@ -16,6 +16,7 @@ mod chain;
 mod state;
 mod iterator;
 mod visitor;
+mod memento;
 
 
 use std::rc::Rc;
@@ -37,6 +38,7 @@ use chain::*;
 use state::*;
 use iterator::*;
 use visitor::*;
+use memento::*;
 
 fn main() {
     println!("Hello, world!");
@@ -161,4 +163,29 @@ fn main() {
     document.accept(&html_visitor);
     println!("\nPlain Text Export:");
     document.accept(&plain_text_visitor);
+
+
+    println!();
+    let mut editor = TextEditor::new();
+    let mut history = History::new();
+    editor.write("Hello ");
+    history.push(editor.save());
+    editor.write("world!");
+    history.push(editor.save());
+    editor.move_cursor(3);
+    println!("Current state:");
+    println!("Content: {}", editor.get_content());
+    println!("Cursor position: {}", editor.get_cursor_position());
+    if let Some(memento) = history.pop() {
+        editor.restore(memento);
+        print!("After first undo:");
+        println!("Content: {}", editor.get_content());
+        println!("Cursor position: {}", editor.get_cursor_position());
+    }
+    if let Some(memento) = history.pop() {
+        editor.restore(memento);
+        print!("After second undo:");
+        println!("Content: {}", editor.get_content());
+        println!("Cursor position: {}", editor.get_cursor_position());
+    }
 }
