@@ -17,6 +17,7 @@ mod state;
 mod iterator;
 mod visitor;
 mod memento;
+mod command;
 
 
 use std::rc::Rc;
@@ -39,6 +40,7 @@ use state::*;
 use iterator::*;
 use visitor::*;
 use memento::*;
+use command::*;
 
 fn main() {
     println!("Hello, world!");
@@ -188,4 +190,18 @@ fn main() {
         println!("Content: {}", editor.get_content());
         println!("Cursor position: {}", editor.get_cursor_position());
     }
+
+    println!();
+
+    let mut editor_invoker = TextEditorInvoker::new();
+    editor_invoker.execute_command(Box::new(InsertTextCommand::new(Rc::clone(&editor_invoker.editor), "Hello ".to_string())));
+    println!("After first insert: {}", editor_invoker.editor.borrow().get_content());
+    editor_invoker.execute_command(Box::new(InsertTextCommand::new(Rc::clone(&editor_invoker.editor), "world!".to_string())));
+    println!("After second insert: {}", editor_invoker.editor.borrow().get_content());
+    editor_invoker.undo();
+    println!("After undo: {}", editor_invoker.editor.borrow().get_content());
+    editor_invoker.redo();
+    println!("After redo: {}", editor_invoker.editor.borrow().get_content());
+    editor_invoker.execute_command(Box::new(DeleteTextCommand::new(Rc::clone(&editor_invoker.editor), 6)));
+    println!("After delete: {}", editor_invoker.editor.borrow().get_content());
 }
