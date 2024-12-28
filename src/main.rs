@@ -18,6 +18,7 @@ mod iterator;
 mod visitor;
 mod memento;
 mod command;
+mod interpreter;
 
 
 use std::rc::Rc;
@@ -41,6 +42,7 @@ use iterator::*;
 use visitor::*;
 use memento::*;
 use command::*;
+use interpreter::*;
 
 fn main() {
     println!("Hello, world!");
@@ -204,4 +206,16 @@ fn main() {
     println!("After redo: {}", editor_invoker.editor.borrow().get_content());
     editor_invoker.execute_command(Box::new(DeleteTextCommand::new(Rc::clone(&editor_invoker.editor), 6)));
     println!("After delete: {}", editor_invoker.editor.borrow().get_content());
+
+
+    let expression = MultiplyExpression::new(
+        Box::new(AddExpression::new(
+            Box::new(NumberExpression::new(5)),
+            Box::new(NumberExpression::new(2)),
+        )),
+        Box::new(NumberExpression::new(12)),
+    );
+
+    let result = expression.interpret();
+    println!("Result: {}", result);
 }
